@@ -3,15 +3,22 @@ using UnityEngine;
 
 public class PlayerNetwork : NetworkBehaviour
 {
-    
     [SerializeField] private Transform spawnedObject;
+    [SerializeField] private GameObject videoPlayerPrefab;
+    
+    private void Start()
+    {
+        if (!IsOwner) return;
+        var vpp = Instantiate(videoPlayerPrefab);
+        vpp.GetComponent<VideoPlayerID>().id = OwnerClientId;
+    }
 
     private void Update()
     {
         if(!IsOwner) return;
 
         DoMovement();
-        
+
         if (Input.GetKeyDown(KeyCode.T))
         {
             var spawnedObjectTransform = Instantiate(spawnedObject);

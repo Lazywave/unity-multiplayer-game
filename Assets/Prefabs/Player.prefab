@@ -151,7 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnedObject: {fileID: 3835591930364550441, guid: dae7a5b07f3d865468f6208464b5b4f7, type: 3}
-  videoPlayer: {fileID: 6529894600870566082, guid: e8c597097f7d3db44a7d9d3a82efe390, type: 3}
+  videoPlayer: {fileID: 0}
+  videoImage: {fileID: 0}
+  videoPlayerPrefab: {fileID: 3915115072834091539, guid: 660b9f5b5d2656a48b6a5073b6b4d1d4, type: 3}
 --- !u!114 &7124645397787429800
 MonoBehaviour:
   m_ObjectHideFlags: 0
