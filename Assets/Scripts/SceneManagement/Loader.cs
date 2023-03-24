@@ -2,7 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SceneShit
+namespace SceneManagement
 {
     public class Loader : MonoBehaviour
     {
@@ -10,7 +10,7 @@ namespace SceneShit
 
         public static event MainMenuLoadedDelegateHandler OnMainMenuLoaded;
     
-        [SerializeField] private string sceneName = "SecScene";
+        [SerializeField] private string sceneName = "Lobby";
     
         private void OnTriggerEnter2D(Collider2D col)
         {

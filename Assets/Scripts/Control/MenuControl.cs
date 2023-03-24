@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-using SceneShit;
+using SceneManagement;
 using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -7,34 +7,48 @@ using UnityEngine;
 
 public class MenuControl : MonoBehaviour
 {
-    [SerializeField]
-    private TMP_Text mHostIpInput;
+    [SerializeField] private TMP_Text hostIpInput;
 
-    [SerializeField]
-    private string mLobbySceneName = "InvadersLobby";
+    [SerializeField] private string lobbySceneName;
 
-    public void StartLocalGame()
+    public void StartLocalGameAsHost()
+    {
+        StartLocalGame(true);
+    }
+    
+    public void StartLocalGameAsServer()
+    {
+        StartLocalGame(false);
+    }
+    
+    
+    private void StartLocalGame(bool asHost)
     {
         // Update the current HostNameInput with whatever we have set in the NetworkConfig as default
         var utpTransport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport; // TODO: Adapt to Websocket transport 
-        if (utpTransport) mHostIpInput.text = "127.0.0.1";
-        if (NetworkManager.Singleton.StartHost())
+        if (utpTransport) hostIpInput.text = "127.0.0.1";
+        if (asHost && NetworkManager.Singleton.StartHost())
         {
             SceneTransitionHandler.sceneTransitionHandler.RegisterCallbacks();
-            SceneTransitionHandler.sceneTransitionHandler.SwitchScene(mLobbySceneName);
+            SceneTransitionHandler.SwitchScene(lobbySceneName);
+        }
+        else if (NetworkManager.Singleton.StartServer())
+        {
+            SceneTransitionHandler.sceneTransitionHandler.RegisterCallbacks();
+            SceneTransitionHandler.SwitchScene(lobbySceneName);
         }
         else
         {
-            Debug.LogError("Failed to start host.");
+            Debug.LogError("Failed to start server.");
         }
     }
 
-    public void JoinLocalGame()
+    private void JoinLocalGame()
     {
         var utpTransport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
         if (utpTransport)
         {
-            utpTransport.SetConnectionData(Sanitize(mHostIpInput.text), 7777);
+            utpTransport.SetConnectionData(Sanitize(hostIpInput.text), 7777);
         }
         if (!NetworkManager.Singleton.StartClient())
         {
