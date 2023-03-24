@@ -127,6 +127,7 @@ public class LobbyControl : NetworkBehaviour
             //Only if all players are ready
             if (allPlayersAreReady)
             {
+                // USEFULLL: What you would do once all players are ready (not interesting to me)
                 //Remove our client connected callback
                 NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
 
@@ -169,5 +170,14 @@ public class LobbyControl : NetworkBehaviour
             _mClientsInLobby[clientID] = true;
             UpdateAndCheckPlayersInLobby();
         }
+    }
+
+
+    public void OnlyImportantFunction()
+    {
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
+        SceneTransitionHandler.sceneTransitionHandler.OnClientLoadedScene -= ClientLoadedScene;
+        
+        SceneTransitionHandler.sceneTransitionHandler.SwitchScene(mInGameSceneName);
     }
 }

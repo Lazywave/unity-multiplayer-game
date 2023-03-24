@@ -305,7 +305,7 @@ public class InvadersGame : NetworkBehaviour
         SceneTransitionHandler.sceneTransitionHandler.ExitAndLoadMainMenu();
     }
 
-    // USEFUL: IMPORTANT SPAWNING FUNCTION
+    // USEFULLL: IMPORTANT SPAWNING FUNCTION
     private void CreateSuperEnemy()
     {
         Assert.IsTrue(IsServer, "Create Saucer should be called server-side only!");

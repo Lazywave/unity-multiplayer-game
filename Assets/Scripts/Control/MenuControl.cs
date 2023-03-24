@@ -16,7 +16,7 @@ public class MenuControl : MonoBehaviour
     public void StartLocalGame()
     {
         // Update the current HostNameInput with whatever we have set in the NetworkConfig as default
-        var utpTransport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
+        var utpTransport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport; // TODO: Adapt to Websocket transport 
         if (utpTransport) mHostIpInput.text = "127.0.0.1";
         if (NetworkManager.Singleton.StartHost())
         {
@@ -31,17 +31,14 @@ public class MenuControl : MonoBehaviour
 
     public void JoinLocalGame()
     {
-        if (mHostIpInput.text != "Hostname")
+        var utpTransport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
+        if (utpTransport)
         {
-            var utpTransport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
-            if (utpTransport)
-            {
-                utpTransport.SetConnectionData(Sanitize(mHostIpInput.text), 7777);
-            }
-            if (!NetworkManager.Singleton.StartClient())
-            {
-                Debug.LogError("Failed to start client.");
-            }
+            utpTransport.SetConnectionData(Sanitize(mHostIpInput.text), 7777);
+        }
+        if (!NetworkManager.Singleton.StartClient())
+        {
+            Debug.LogError("Failed to start client.");
         }
     }
     
