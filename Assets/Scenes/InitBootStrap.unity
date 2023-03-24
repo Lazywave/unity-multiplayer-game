@@ -238,7 +238,6 @@ GameObject:
   - component: {fileID: 1453971835}
   - component: {fileID: 1453971834}
   - component: {fileID: 1453971836}
-  - component: {fileID: 1453971837}
   m_Layer: 0
   m_Name: SceneTransitionHandler
   m_TagString: Untagged
@@ -289,16 +288,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be1025097a4fd94a80a921c5445a95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1453971837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453971833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c96ede9b6f933924fb6d67b87eacff52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: SecScene

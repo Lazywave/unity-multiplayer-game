@@ -1,4 +1,4 @@
-using SceneShit;
+using SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +8,7 @@ namespace UI
     {
         [Header("Buttons")]
         [SerializeField] private Button toLevelBtn;
-        [SerializeField] private Button exitToSecBtn;
+        [SerializeField] private Button exitToLobbyBtn;
         [SerializeField] private Button exitToMainBtn;
     
         [Header("Scenes")]
@@ -16,7 +16,7 @@ namespace UI
         private void Start()
         {
             toLevelBtn.onClick.AddListener(() => Loader.LoadScene(toLevelScene));
-            exitToSecBtn.onClick.AddListener(() => Loader.LoadScene("SecScene"));
+            exitToLobbyBtn.onClick.AddListener(() => Loader.LoadScene("Lobby"));
             exitToMainBtn.onClick.AddListener(() => Loader.LoadScene("MainMenu"));
             
         }
