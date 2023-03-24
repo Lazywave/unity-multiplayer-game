@@ -9,8 +9,8 @@ namespace SceneShit
         // ReSharper disable once InconsistentNaming
         public static SceneTransitionHandler sceneTransitionHandler { get; internal set; }
 
-        [SerializeField]
-        public string defaultMainMenu = "MainMenu";
+        
+        private const string DefaultMainMenu = "MainMenu";
 
         public delegate void ClientLoadedSceneDelegateHandler(ulong clientId);
         public event ClientLoadedSceneDelegateHandler OnClientLoadedScene;
@@ -53,7 +53,7 @@ namespace SceneShit
         {
             if (_sceneState == SceneStates.Init)
             {
-                SceneManager.LoadScene(defaultMainMenu);
+                SceneManager.LoadScene(DefaultMainMenu);
             }
             
             // My Camera UI thing
@@ -105,7 +105,7 @@ namespace SceneShit
             NetworkManager.Singleton.SceneManager.OnLoadComplete -= OnLoadComplete;
             OnClientLoadedScene = null;
             SetSceneState(SceneStates.First);
-            SceneManager.LoadScene(defaultMainMenu);
+            SceneManager.LoadScene(DefaultMainMenu);
         }
     
         // My Camera UI thing
