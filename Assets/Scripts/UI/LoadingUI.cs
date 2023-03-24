@@ -17,7 +17,8 @@ namespace UI
         {
             toLevelBtn.onClick.AddListener(() => Loader.LoadScene(toLevelScene));
             exitToSecBtn.onClick.AddListener(() => Loader.LoadScene("SecScene"));
-            exitToMainBtn.onClick.AddListener(() => Loader.LoadScene("MainScene"));
+            exitToMainBtn.onClick.AddListener(() => Loader.LoadScene("MainMenu"));
+            
         }
 
     }

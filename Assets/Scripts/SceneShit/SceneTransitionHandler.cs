@@ -10,7 +10,7 @@ namespace SceneShit
         public static SceneTransitionHandler sceneTransitionHandler { get; internal set; }
 
         [SerializeField]
-        public string defaultMainMenu = "MainScene";
+        public string defaultMainMenu = "MainMenu";
 
         public delegate void ClientLoadedSceneDelegateHandler(ulong clientId);
         public event ClientLoadedSceneDelegateHandler OnClientLoadedScene;

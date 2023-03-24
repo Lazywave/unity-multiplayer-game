@@ -9,7 +9,7 @@ namespace SceneShit
 
         private void Start()
         {
-            Loader.OnMainSceneLoaded += SpawnPlayerServerRpc;
+            Loader.OnMainMenuLoaded += SpawnPlayerServerRpc;
 
         }
 

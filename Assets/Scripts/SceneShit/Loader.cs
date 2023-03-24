@@ -6,9 +6,9 @@ namespace SceneShit
 {
     public class Loader : MonoBehaviour
     {
-        public delegate void MainSceneLoadedDelegateHandler();
+        public delegate void MainMenuLoadedDelegateHandler();
 
-        public static event MainSceneLoadedDelegateHandler OnMainSceneLoaded;
+        public static event MainMenuLoadedDelegateHandler OnMainMenuLoaded;
     
         [SerializeField] private string sceneName = "SecScene";
     
@@ -21,9 +21,9 @@ namespace SceneShit
         {
             NetworkManager.Singleton.SceneManager.LoadScene(loadedSceneName, LoadSceneMode.Single);
         
-            if (loadedSceneName == "MainScene")
+            if (loadedSceneName == "MainMenu")
             {
-                OnMainSceneLoaded?.Invoke();
+                OnMainMenuLoaded?.Invoke();
             }
         }
     }
