@@ -111,6 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1638623882066188441}
   - component: {fileID: 3894797254586121884}
+  - component: {fileID: 8232800947674140554}
   m_Layer: 0
   m_Name: VideoPlayer
   m_TagString: VideoUI
@@ -147,6 +148,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9859752c7850e547a1561eb2c315143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+--- !u!114 &8232800947674140554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3915115072834091539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &4002806765889469003
 GameObject:
   m_ObjectHideFlags: 0

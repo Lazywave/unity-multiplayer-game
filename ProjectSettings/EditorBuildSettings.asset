@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SecScene.unity
     guid: db1f699abe1953a428e6badbead88da5
+  - enabled: 1
+    path: Assets/Scenes/RRMain.unity
+    guid: c26cc0940bafe474f9d8368f2b1dad21
+  - enabled: 1
+    path: Assets/Scenes/RRLevel1.unity
+    guid: 95975195816d7104ca86be19561efbfb
   m_configObjects: {}

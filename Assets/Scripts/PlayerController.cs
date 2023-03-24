@@ -1,7 +1,8 @@
+using UI;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerNetwork : NetworkBehaviour
+public class PlayerController : NetworkBehaviour
 {
     [SerializeField] private Transform spawnedObject;
     [SerializeField] private GameObject videoPlayerPrefab;
@@ -24,6 +25,18 @@ public class PlayerNetwork : NetworkBehaviour
             var spawnedObjectTransform = Instantiate(spawnedObject);
             spawnedObjectTransform.GetComponent<NetworkObject>().Spawn(true);
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DisconnectClientServerRpc(NetworkManager.Singleton.LocalClientId);
+        }
+    }
+    
+    [ServerRpc]
+    private void DisconnectClientServerRpc(ulong clientID)
+    {
+        NetworkManager.Singleton.DisconnectClient(clientID);
+        print("Successfully disconnected client from server.");
     }
 
     private void DoMovement()
