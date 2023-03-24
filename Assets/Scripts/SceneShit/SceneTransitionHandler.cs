@@ -13,11 +13,9 @@ namespace SceneShit
         public string defaultMainMenu = "MainScene";
 
         public delegate void ClientLoadedSceneDelegateHandler(ulong clientId);
-
         public event ClientLoadedSceneDelegateHandler OnClientLoadedScene;
 
         public delegate void SceneStateChangedDelegateHandler(SceneStates newState);
-
         public event SceneStateChangedDelegateHandler OnSceneStateChanged;
 
         private int _numberOfClientsLoaded;
@@ -27,6 +25,8 @@ namespace SceneShit
         {
             Init,
             First,
+            Ingame,
+            Lobby,
             Second
         }
     
@@ -55,22 +55,15 @@ namespace SceneShit
             {
                 SceneManager.LoadScene(defaultMainMenu);
             }
-        
+            
+            // My Camera UI thing
             NetworkManager.Singleton.OnClientDisconnectCallback += DestroyLeftoverSceneObjects;
-        
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
     
         // Logic can do different things based on the current scene state
         public SceneStates GetCurrentSceneState()
         {
             return _sceneState;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if(!NetworkManager.Singleton.IsListening) return;
-        
         }
 
         // Once a host has started, we need to register the callbacks of clients trying to join
@@ -88,7 +81,6 @@ namespace SceneShit
             }
             else
             {
-                // TODO: Understand this
                 SceneManager.LoadSceneAsync(sceneName);
             }
         }
@@ -101,14 +93,14 @@ namespace SceneShit
         }
     
         // Client sync function, that I probably don't need
-        public bool AllClientsLoaded()
+        public bool AllClientsAreLoaded()
         {
             return _numberOfClientsLoaded == NetworkManager.Singleton.ConnectedClientsList.Count;
         }
 
-        // Ends the game and returns the client to the main menu
+        // Ends the game and returns the client to the main menu -> IMPORTANT FUNCTIONALITY
         // If Host ends the game, clients are hard-locked
-        public void ExitAndLoadMainScene()
+        public void ExitAndLoadMainMenu()
         {
             NetworkManager.Singleton.SceneManager.OnLoadComplete -= OnLoadComplete;
             OnClientLoadedScene = null;
@@ -116,6 +108,7 @@ namespace SceneShit
             SceneManager.LoadScene(defaultMainMenu);
         }
     
+        // My Camera UI thing
         private static void DestroyLeftoverSceneObjects(ulong obj)
         {
             // Currently only destroys the video UI
